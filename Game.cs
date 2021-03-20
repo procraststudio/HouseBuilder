@@ -72,9 +72,10 @@ public class Game : MonoBehaviour
     public static List<string> randomEvents = new List<string>() { "NOWORODEK GIGANT", "KOSMICZNE ŁAZANKI", "KOŃ FETTY" };  //  "DZIKA", "HELA", "PIECZARA", , "PIES" 
 
     private enum States
-        { GameStart, Question, TrueState, FalseState, EffectState, Night, Dawn, Sickness, Death };
+        { GameStart, Question, TrueState, FalseState, EffectState, Night, Dawn, Sickness, Death, Win };
     private States myState;
     int currentHero;
+    public int levelModifier;
    
 
     void Start()
@@ -115,6 +116,7 @@ public class Game : MonoBehaviour
         {
             myState = States.Death;
         }
+        CheckWin();
     }
 
     public void StatesManager()
@@ -176,14 +178,22 @@ public class Game : MonoBehaviour
         }
         else if (myState == States.Death)
         {
-            FindObjectOfType<StartGame>().LoadGameScene();
+           FindObjectOfType<StartGame>().LoadGameScene();
             //  transition.SetTrigger("Start");
           //  SceneManager.LoadScene(2);
 
         }
-
+        else if (myState == States.Win)
+        {
+           // FindObjectOfType<StartGame>().LoadGameScene(3);
+            transition.SetTrigger("Start");
+             SceneManager.LoadScene(3);
 
         }
+
+
+
+    }
 
     
 
@@ -260,8 +270,11 @@ public class Game : MonoBehaviour
             case "CWANIAK ZDZISEK":
                 currentHero = 0;
                 startText.GetComponent<TextMeshProUGUI>().text = "Szefie, materiał spadł komuś z lawety. Przywieżć?";
-                option1Text.GetComponent<TextMeshProUGUI>().text = "Dawaj pan";
+                option1Text.GetComponent<TextMeshProUGUI>().text = "Dawaj pan.";
                 option2Text.GetComponent<TextMeshProUGUI>().text = "Nie wchodzę w to.";
+                //option1Text.GetComponent<TextMeshProUGUI>().text = "Dawaj pan. \n 70%: +3 <sprite=1>, 30%: -1 <sprite=2>";
+                //option2Text.GetComponent<TextMeshProUGUI>().text = "Nie wchodzę w to. \n 70%: +2 <sprite=0>, 30%: +2 <sprite=1>";
+
                 return;
             case "EWELINA":
                 currentHero = 1;
@@ -291,7 +304,7 @@ public class Game : MonoBehaviour
                 currentHero = 5; 
                 startText.GetComponent<TextMeshProUGUI>().text = "AGUGUAGUGU. A GU-GU!";
                 option1Text.GetComponent<TextMeshProUGUI>().text = "Ło matko!"; ;
-                option2Text.GetComponent<TextMeshProUGUI>().text = "Łolaboga";
+                option2Text.GetComponent<TextMeshProUGUI>().text = "A gdzie byli rodzice?";
                 falseButton.SetActive(false);
                 return;
 
@@ -320,7 +333,7 @@ public class Game : MonoBehaviour
     public void ChoiceOption1()
     {
 
-        d100 = Random.Range(1, 101);
+        d100 = Random.Range(1, 101) + levelModifier;
         Debug.Log("Number was " + d100);
         AudioSource.PlayClipAtPoint(click01, Camera.main.transform.position, clickSoundVolume);
         myState = States.EffectState;
@@ -334,8 +347,8 @@ public class Game : MonoBehaviour
                 }
                 else
                 {
-                    finalText.GetComponent<TextMeshProUGUI>().text = "Złapały mnie. Co teraz będzie?";
-                    lifeTotal--;
+                    finalText.GetComponent<TextMeshProUGUI>().text = "Złapały mnie. Płać pan łapówkę";
+                    MoneyChange(-1); lifeTotal--;
                 }
 
                 return;
@@ -347,7 +360,7 @@ public class Game : MonoBehaviour
                 }
                 else
                 {
-                    finalText.GetComponent<TextMeshProUGUI>().text = "Miałeś spore nudności";
+                    finalText.GetComponent<TextMeshProUGUI>().text = "Miałeś spore nudności i nacharatałeś";
                     lifeTotal -= 2;
                 }
 
@@ -369,12 +382,12 @@ public class Game : MonoBehaviour
             case 3: //MANIEK
                 if (d100 <= 75)
                 {
-                    finalText.GetComponent<TextMeshProUGUI>().text = "Masz pan zrobione.";
+                    finalText.GetComponent<TextMeshProUGUI>().text = "Masz pan zrobione ale sam posprzataj.";
                     WoodChange(1);
                 }
                 else
                 {
-                    finalText.GetComponent<TextMeshProUGUI>().text = "Spieprzyłem to panu wzorowo";
+                    finalText.GetComponent<TextMeshProUGUI>().text = "Spieprzyłem to panu wzorowo, a jak!";
                     MoneyChange(-1); lifeTotal--;
                 }
 
@@ -395,12 +408,12 @@ public class Game : MonoBehaviour
             case 5: //NOWORODEK GIGANT
                 if (d100 <= 50)
                 {
-                    finalText.GetComponent<TextMeshProUGUI>().text = "Noworodek spadł na ciebie";
-                    lifeTotal -= 2; 
+                    finalText.GetComponent<TextMeshProUGUI>().text = "Osesek złamał ci spojenie łonowe";
+                    lifeTotal --; 
                 }
                 else
                 {
-                    finalText.GetComponent<TextMeshProUGUI>().text = "Noworodek uszkodził dom";
+                    finalText.GetComponent<TextMeshProUGUI>().text = "Noworodek przygniótł robotnika";
                     WoodChange(-1);
                 }
 
@@ -409,8 +422,8 @@ public class Game : MonoBehaviour
             case 6: //ŁAZANKI Z KOSMOSU
                 if (d100 <= 50)
                 {
-                    finalText.GetComponent<TextMeshProUGUI>().text = "Sprzedałeś nasze zdjęcia do gazety, szujo!";
-                    MoneyChange(2);
+                    finalText.GetComponent<TextMeshProUGUI>().text = "Sprzedałeś filmik do TVN, szujo!";
+                    MoneyChange(3);
                 }
                 else
                 {
@@ -423,12 +436,12 @@ public class Game : MonoBehaviour
             case 7: //KOŃ FETTY
                 if (d100 <= 50)
                 {
-                    finalText.GetComponent<TextMeshProUGUI>().text = "Przywiozłem materiały";
+                    finalText.GetComponent<TextMeshProUGUI>().text = "Masz ode mnie materiały";
                     WoodChange(3);
                 }
                 else
                 {
-                    finalText.GetComponent<TextMeshProUGUI>().text = "Duża kasa! Ihahaha!";
+                    finalText.GetComponent<TextMeshProUGUI>().text = "Trafiłeś czwórkę w lotto! Ihahaha!";
                     MoneyChange(3);
                 }
 
@@ -440,7 +453,7 @@ public class Game : MonoBehaviour
 
     public void ChoiceOption2()
     {
-        d100 = Random.Range(1, 101);
+        d100 = Random.Range(1, 101) + levelModifier;
         Debug.Log("Number was " + d100);
         myState = States.EffectState;
         AudioSource.PlayClipAtPoint(click02, Camera.main.transform.position, clickSoundVolume);
@@ -468,15 +481,15 @@ public class Game : MonoBehaviour
 
                 else
                 {
-                    finalText.GetComponent<TextMeshProUGUI>().text = "Niestety, RSSO wyszło 34234%";
+                    finalText.GetComponent<TextMeshProUGUI>().text = "Niestety, RSSO wyszło 34284%";
                     MoneyChange(-2);
                 }
                 return;
             case 2: //BELKOT
                 if (d100 <= 75)
                 {
-                    finalText.GetComponent<TextMeshProUGUI>().text = "O, kierownik stówę zostawił";
-                    MoneyChange(-1); lifeTotal -=2;
+                    finalText.GetComponent<TextMeshProUGUI>().text = "O, kierownik taki bladziutki i stówę zostawił";
+                    MoneyChange(-1); lifeTotal--;
                 }
 
                 else
@@ -488,7 +501,7 @@ public class Game : MonoBehaviour
             case 3: //MANIEK
                 if (d100 <= 75)
                 {
-                    finalText.GetComponent<TextMeshProUGUI>().text = "Odpocząłeś pan ode mnie";
+                    finalText.GetComponent<TextMeshProUGUI>().text = "Odpocząłeś pan ode mnie, idę zajarać";
                     lifeTotal++;
                 }
 
@@ -502,7 +515,7 @@ public class Game : MonoBehaviour
                 if (d100 <= 75)
                 {
                     finalText.GetComponent<TextMeshProUGUI>().text = "To oddaję zaliczkę i szukaj mnie w Polsce";
-                    MoneyChange(1);
+                    MoneyChange(2);
                 }
 
                 else
@@ -514,20 +527,20 @@ public class Game : MonoBehaviour
             case 5: //NOWORODEK GIGANT
                 if (d100 <= 50)
                 {
-                    finalText.GetComponent<TextMeshProUGUI>().text = "Noworodek spadł na ciebie";
+                    finalText.GetComponent<TextMeshProUGUI>().text = "Osesek rozerwał ci tarczycę";
                     lifeTotal -= 2;
                 }
                 else
                 {
-                    finalText.GetComponent<TextMeshProUGUI>().text = "Noworodek uszkodził dom";
+                    finalText.GetComponent<TextMeshProUGUI>().text = "Noworodek uszkodził fundamenty";
                     WoodChange(-1);
                 }
                 return;
             case 6: //ŁAZANKI Z KOSMOSU
                 if (d100 <= 50)
                 {
-                    finalText.GetComponent<TextMeshProUGUI>().text = "Sprzedałeś nasze zdjęcia do gazety, gnido!";
-                    MoneyChange(2);
+                    finalText.GetComponent<TextMeshProUGUI>().text = "Sprzedałeś nasze zdjęcia do Faktu, gnido!";
+                    MoneyChange(3);
                 }
                 else
                 {
@@ -674,18 +687,30 @@ public class Game : MonoBehaviour
         if ((materialsTotal+moneyTotal) <20)
         {
             playerLevel = 1;
+            levelModifier = -5;
           //  houseImage.GetComponent<Image>().sprite = null;
         }
         else if (((materialsTotal + moneyTotal) >= 20)&& ((materialsTotal + moneyTotal) < 40))
         {
             playerLevel = 2;
-           // houseImage.GetComponent<Image>().sprite = houseImages[0];
+            levelModifier = 0;
+            // houseImage.GetComponent<Image>().sprite = houseImages[0];
 
         }
         else if ((materialsTotal + moneyTotal) >= 40)
             {
             playerLevel = 3;
-           // houseImage.GetComponent<Image>().sprite = houseImages[1];
+            levelModifier = 5;
+            // houseImage.GetComponent<Image>().sprite = houseImages[1];
+        }
+    }
+
+    public void CheckWin()
+    {
+        if ((materialsTotal ==30)&&(moneyTotal==30))
+          {
+            myState = States.Win;
+
         }
     }
 
