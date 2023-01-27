@@ -1,7 +1,9 @@
 # HouseBuilder
 # Project Name
-> Outline a brief description of your project.
-> Live demo [_here_](https://www.example.com). <!-- If you have the project hosted somewhere, include the link here. -->
+This is a short prototype of decision game (with weird humour). 
+
+Collect 30 materials and 30 coins to build your little black house.
+> Live demo [_here_](https://procraststudio.itch.io/little-black-house)
 
 ## Table of Contents
 * [General Info](#general-information)
