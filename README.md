@@ -1,5 +1,5 @@
 # HouseBuilder
-# Project Name
+
 This is a short prototype of decision game (with weird humour). 
 
 Collect 30 materials and 30 coins to build your little black house.
