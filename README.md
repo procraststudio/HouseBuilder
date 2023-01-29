@@ -2,7 +2,7 @@
 
 This is a short prototype of decision game (with weird humour). 
 
-Collect 30 materials and 30 coins to build your little black house.
+Collect 30 materials and 30 coins in 10 days to build your little black house.
 > Live demo [_here_](https://procraststudio.itch.io/little-black-house)
 
 ## Table of Contents
@@ -31,54 +31,46 @@ Collect 30 materials and 30 coins to build your little black house.
 
 ## Features
 List the ready features here:
-- Awesome feature 1
-- Awesome feature 2
-- Awesome feature 3
+- Day/Hour system
+- Resources system: stone/gold/health
+- Dialogues
 
 
 ## Screenshots
-![Example screenshot](./img/screenshot.png)
+![Example screenshot]([https://img.itch.zone/aW1nLzU2NzAzODguanBn/original/lUEBBU.jpg])
 <!-- If you have screenshots you'd like to share, include them here. -->
 
 
 ## Setup
-What are the project requirements/dependencies? Where are they listed? A requirements.txt or a Pipfile.lock file perhaps? Where is it located?
-
-Proceed to describe how to install / setup one's local environment / get started with the project.
+Click "Run game" to play
 
 
 ## Usage
-How does one go about using it?
-Provide various use cases and code examples here.
-
-`write-your-code-here`
+Click "Run game" to play
 
 
 ## Project Status
-Project is: _in progress_ / _complete_ / _no longer being worked on_. If you are no longer working on it, provide reasons why.
+Project is: _no longer being worked on_.
 
 
 ## Room for Improvement
-Include areas you believe need improvement / could be improved. Also add TODOs for future development.
 
 Room for improvement:
-- Improvement to be done 1
-- Improvement to be done 2
-
-To do:
-- Feature to be added 1
-- Feature to be added 2
+- Add more meetings / more dialogues
+- Option to build bigger house
 
 
 ## Acknowledgements
-Give credit here.
-- This project was inspired by...
-- This project was based on [this tutorial](https://www.example.com).
-- Many thanks to...
+
+- Music:  "Success That Works Both Ways Instrumental" by cliveromney from Pixabay 
+- Fireworks: Creepy Cat 
+- Font: Architect'sDaughter (dafont.com)
+
+- Many thanks to Bogusław & Dzika
 
 
 ## Contact
-Created by [@flynerdpl](https://www.flynerd.pl/) - feel free to contact me!
+Created by procraststudio.itch.io
 
 
 <!-- Optional -->
