@@ -37,7 +37,7 @@ List the ready features here:
 
 
 ## Screenshots
-![Example screenshot]([https://img.itch.zone/aW1nLzU2NzAzODguanBn/original/lUEBBU.jpg])
+ https://img.itch.zone/aW1nLzU2NzAzODguanBn/original/lUEBBU.jpg
 <!-- If you have screenshots you'd like to share, include them here. -->
 
 
