@@ -23,6 +23,7 @@ Collect 30 materials and 30 coins in 10 days to build your little black house.
 - When I saw a friend's struggle with building his own house and with the workers I got the idea to make a short decision-making game out of it.
 - The aim of this project was to complete the game in a short amount of time, improve my C# programming skills, Unity handling and... having fun (maybe just for me :-).
 - I wanted to put a special emphasis on learning how to handle "States", game states that affect the player's situation.  
+- Inspired by King's Decision game
 
 
 ## Technologies Used
@@ -33,6 +34,7 @@ Collect 30 materials and 30 coins in 10 days to build your little black house.
 List the ready features here:
 - Day/Hour system
 - Resources system: stone/gold/health
+- Bonus Actions: Market, Bargain, Doctor
 - Dialogues
 
 
