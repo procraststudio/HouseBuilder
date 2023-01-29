@@ -20,17 +20,13 @@ Collect 30 materials and 30 coins to build your little black house.
 
 
 ## General Information
-- Provide general information about your project here.
-- What problem does it (intend to) solve?
-- What is the purpose of your project?
-- Why did you undertake it?
-<!-- You don't have to answer all the questions - just the ones relevant to your project. -->
+- When I saw a friend's struggle with building his own house and with the workers I got the idea to make a short decision-making game out of it.
+- The aim of this project was to complete the game in a short amount of time, improve my C# programming skills, Unity handling and... having fun (maybe just for me :-).
+- I wanted to put a special emphasis on learning how to handle "States", game states that affect the player's situation.  
 
 
 ## Technologies Used
-- Tech 1 - version 1.0
-- Tech 2 - version 2.0
-- Tech 3 - version 3.0
+- Unity 2019.1.1f1
 
 
 ## Features
